@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/tams_api_changelog/static/css/main.5d1e232a.css",
+    "main.js": "/tams_api_changelog/static/js/main.ac725cd7.js",
+    "static/js/787.28cb0dcd.chunk.js": "/tams_api_changelog/static/js/787.28cb0dcd.chunk.js",
+    "static/media/logo.svg": "/tams_api_changelog/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/tams_api_changelog/index.html",
+    "main.5d1e232a.css.map": "/tams_api_changelog/static/css/main.5d1e232a.css.map",
+    "main.ac725cd7.js.map": "/tams_api_changelog/static/js/main.ac725cd7.js.map",
+    "787.28cb0dcd.chunk.js.map": "/tams_api_changelog/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5d1e232a.css",
+    "static/js/main.ac725cd7.js"
+  ]
+}

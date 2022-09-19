@@ -1,0 +1,74 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "TAMS API v1",
+        "version": "1.0.0",
+        "description": ""
+    },
+    "paths": {
+        "/api/v1/assets/{id}/test/": {
+            "get": {
+                "operationId": "assets_api_test_asset_comments",
+                "summary": "Test Asset Comments",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "title": "Id",
+                            "type": "integer"
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "title": "Limit",
+                            "default": 100,
+                            "minimum": 1,
+                            "type": "integer"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "schema": {
+                            "title": "Offset",
+                            "default": 0,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AssetCommentPagedDTO"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Assets"
+                ]
+            }
+        },
+        "(added_api_1)": {
+            "trace": {
+                "tags": [
+                    "Assets"
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {}
+    }
+}

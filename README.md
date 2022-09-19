@@ -1,1 +1,0 @@
-TAMS API changelogs

@@ -1,0 +1,417 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "TAMS API v1",
+        "version": "1.0.0",
+        "description": ""
+    },
+    "paths": {
+        "(removed_api_1)": {
+            "trace": {
+                "tags": [
+                    "Admin"
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "UserDTO": {
+                "title": "UserDTO",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "maxLength": 100,
+                        "type": "string"
+                    },
+                    "email": {
+                        "title": "Email",
+                        "maxLength": 100,
+                        "type": "string"
+                    },
+                    "profile_image": {
+                        "title": "Profile Image",
+                        "maxLength": 1000,
+                        "type": "string"
+                    },
+                    "role": {
+                        "title": "Role",
+                        "default": "normal",
+                        "maxLength": 100,
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "title": "Created At",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "last_login": {
+                        "title": "Last Login",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "name",
+                    "email",
+                    "created_at"
+                ]
+            },
+            "PresignedUrlDTO": {
+                "title": "PresignedUrlDTO",
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "title": "Url",
+                        "description": "Presigned URL",
+                        "type": "string"
+                    },
+                    "headers": {
+                        "title": "Headers",
+                        "description": "Presigned URL headers",
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "url",
+                    "headers"
+                ]
+            },
+            "AssetPreviewDTO": {
+                "title": "AssetPreviewDTO",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "thumbnail_url": {
+                        "title": "Thumbnail Url",
+                        "type": "string"
+                    },
+                    "is_available": {
+                        "title": "Is Available",
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "thumbnail_url",
+                    "is_available"
+                ]
+            },
+            "AssetPreviewPagedDTO": {
+                "title": "AssetPreviewPagedDTO",
+                "type": "object",
+                "properties": {
+                    "objects": {
+                        "title": "Objects",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AssetPreviewDTO"
+                        }
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "objects",
+                    "count"
+                ]
+            },
+            "OrderBy": {
+                "title": "OrderBy",
+                "description": "An enumeration.",
+                "enum": [
+                    "id",
+                    "name",
+                    "file_size",
+                    "created_at",
+                    "updated_at"
+                ],
+                "type": "string"
+            },
+            "UserSimpleSchema": {
+                "title": "UserSimpleSchema",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "maxLength": 100,
+                        "type": "string"
+                    },
+                    "profile_image": {
+                        "title": "Profile Image",
+                        "maxLength": 1000,
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name"
+                ]
+            },
+            "AssetSearchOptionsDTO": {
+                "title": "AssetSearchOptionsDTO",
+                "type": "object",
+                "properties": {
+                    "order_by_options": {
+                        "default": [
+                            "id",
+                            "name",
+                            "file_size",
+                            "created_at",
+                            "updated_at"
+                        ],
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/OrderBy"
+                        }
+                    },
+                    "created_by_options": {
+                        "title": "Created By Options",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserSimpleSchema"
+                        }
+                    }
+                },
+                "required": [
+                    "created_by_options"
+                ]
+            },
+            "AssetDTO": {
+                "title": "AssetDTO",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "url": {
+                        "title": "Url",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "title": "Created At",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "title": "Updated At",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "created_by": {
+                        "$ref": "#/components/schemas/UserSimpleSchema"
+                    },
+                    "updated_by": {
+                        "$ref": "#/components/schemas/UserSimpleSchema"
+                    },
+                    "is_available": {
+                        "title": "Is Available",
+                        "type": "boolean"
+                    },
+                    "file_info": {
+                        "title": "File Info",
+                        "type": "string"
+                    },
+                    "latest_version": {
+                        "title": "Latest Version",
+                        "type": "integer"
+                    },
+                    "is_deletable": {
+                        "title": "Is Deletable",
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "url",
+                    "created_at",
+                    "updated_at",
+                    "created_by",
+                    "updated_by",
+                    "is_available",
+                    "file_info",
+                    "latest_version",
+                    "is_deletable"
+                ]
+            },
+            "ResponseDTO": {
+                "title": "ResponseDTO",
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "title": "Success",
+                        "type": "boolean"
+                    },
+                    "error_type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
+                    "detail": {
+                        "title": "Detail",
+                        "default": "",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "success"
+                ]
+            },
+            "AssetHistoryDTO": {
+                "title": "AssetHistoryDTO",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserSimpleSchema"
+                    },
+                    "action": {
+                        "title": "Action",
+                        "type": "string"
+                    },
+                    "logged_at": {
+                        "title": "Logged At",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "version": {
+                        "title": "Version",
+                        "type": "integer"
+                    },
+                    "version_id": {
+                        "title": "Version Id",
+                        "type": "string"
+                    },
+                    "thumbnail_url": {
+                        "title": "Thumbnail Url",
+                        "type": "string"
+                    },
+                    "version_url": {
+                        "title": "Version Url",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "user",
+                    "action",
+                    "logged_at",
+                    "version",
+                    "version_id",
+                    "thumbnail_url",
+                    "version_url"
+                ]
+            },
+            "AssetHistoryPagedDTO": {
+                "title": "AssetHistoryPagedDTO",
+                "type": "object",
+                "properties": {
+                    "objects": {
+                        "title": "Objects",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AssetHistoryDTO"
+                        }
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "objects",
+                    "count"
+                ]
+            },
+            "AssetCommentDTO": {
+                "title": "AssetCommentDTO",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserSimpleSchema"
+                    },
+                    "text": {
+                        "title": "Text",
+                        "type": "string"
+                    },
+                    "commented_at": {
+                        "title": "Commented At",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "is_mine": {
+                        "title": "Is Mine",
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "id",
+                    "user",
+                    "text",
+                    "commented_at",
+                    "is_mine"
+                ]
+            },
+            "AssetCommentPagedDTO": {
+                "title": "AssetCommentPagedDTO",
+                "type": "object",
+                "properties": {
+                    "objects": {
+                        "title": "Objects",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AssetCommentDTO"
+                        }
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "objects",
+                    "count"
+                ]
+            }
+        },
+        "securitySchemes": {
+            "JWTAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
